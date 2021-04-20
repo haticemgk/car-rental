@@ -1,12 +1,11 @@
+using Application.Infrastructure.Persistence;
+using Application.Services;
+using Application.Services.Concrete;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace WebApp
 {
@@ -23,6 +22,11 @@ namespace WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<CarRentalDbContext>();
+            services.AddScoped<ICarRentalDbContext>(provider => provider.GetService<CarRentalDbContext>());
+
+            services.AddScoped<IVehicleBrandService, VehicleBrandService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
