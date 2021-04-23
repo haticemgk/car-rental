@@ -24,7 +24,7 @@ namespace WebApp.Areas.Admin.Controllers
         // GET: VehicleBrandController
         public ActionResult Index()
         {
-            VehicleBrandFilter filter =new VehicleBrandFilter();
+            VehicleBrandFilter filter = new VehicleBrandFilter();
             var items = VehicleBrandService.Get(filter);
             return View(items);
         }
@@ -49,8 +49,11 @@ namespace WebApp.Areas.Admin.Controllers
         {
             try
             {
-                VehicleBrandService.Add(vehicleBrand);
-                return RedirectToAction(nameof(Index));
+                var response = VehicleBrandService.Add(vehicleBrand);
+                ViewBag.Response = response;
+               
+                return View();
+                
             }
             catch
             {
@@ -72,8 +75,9 @@ namespace WebApp.Areas.Admin.Controllers
         {
             try
             {
-                VehicleBrandService.Update(vehicleBrand);
-                return RedirectToAction(nameof(Index));
+                var response = VehicleBrandService.Update(vehicleBrand);
+                ViewBag.Response = response;
+                return View(vehicleBrand);
             }
             catch
             {
