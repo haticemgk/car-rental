@@ -28,11 +28,8 @@ namespace WebApp
 
             services.AddScoped<IVehicleBrandService, VehicleBrandService>();
             services.AddScoped<IVehicleModelService, VehicleModelService>();
-<<<<<<< HEAD
             services.AddScoped<IFuelTypeService, FuelTypeService>();
-=======
-            services.AddScoped<ITireTypeService, TireTypeService>();
->>>>>>> main
+            services.AddScoped<IColorTypeService, ColorTypeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
